@@ -26,7 +26,7 @@ public class LivenessCameraViewController: UIViewController {
                             previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
                             previewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
                             cameraView.layer.addSublayer(previewLayer)
-                            previewLayer.position= CGPoint(x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
+                            previewLayer.position = CGPoint(x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
                             previewLayer.bounds = cameraView.frame
                         }
                     }
