@@ -40,21 +40,22 @@ public class LivenessCameraViewController: UIViewController {
     
     private func setupCamera() {
         captureSession.sessionPreset = .high
-        guard let frontCamera = AVCaptureDevice.default(for: AVCaptureDevice.DeviceType.builtInWideAngleCamera, for: AVMediaType.video, position: .front) else {
-            print("Unable to access camera")
-            return
-        }
-        
-        do {
-            let input = try AVCaptureDeviceInput(device: frontCamera)
-            sessionOutput.isHighResolutionStillImageOutputEnabled = true
-            if captureSession.canAddInput(input) && captureSession.canAddOutput(sessionOutput) {
-                captureSession.addInput(input)
-                captureSession.addOutput(sessionOutput)
-                self.setuCameraPreview()
+        if #available(iOS 10.0, *) {
+            guard let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: AVMediaType.video, position: .front) else {
+                print("Unable to access camera")
+                return
             }
-        } catch let error {
-            print("error unable to initialize front camera \(error.localizedDescription)")
+            do {
+                let input = try AVCaptureDeviceInput(device: frontCamera)
+                sessionOutput.isHighResolutionStillImageOutputEnabled = true
+                if captureSession.canAddInput(input) && captureSession.canAddOutput(sessionOutput) {
+                    captureSession.addInput(input)
+                    captureSession.addOutput(sessionOutput)
+                    self.setuCameraPreview()
+                }
+            } catch let error {
+                print("error unable to initialize front camera \(error.localizedDescription)")
+            }
         }
     }
     
