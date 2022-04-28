@@ -39,6 +39,7 @@ public class LivenessCameraViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        cameraView.layer.masksToBounds = true
         cameraView.layer.cornerRadius = cameraView.frame.width / 2
     }
 }
