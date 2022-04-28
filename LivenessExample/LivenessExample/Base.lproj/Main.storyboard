@@ -16,10 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ev-BG-DzI">
-                                <rect key="frame" x="132" y="336" width="150" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ev-BG-DzI">
+                                <rect key="frame" x="132" y="421.5" width="150" height="53"/>
+                                <color key="backgroundColor" red="0.88235294117647056" green="0.14509803921568626" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Bop-Gb-oU9"/>
+                                    <constraint firstAttribute="height" constant="53" id="orG-hP-Bhe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="14"/>
+                                <state key="normal" title="Liveness Camera">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="actionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fKL-bR-Hzu"/>
                                 </connections>
@@ -27,6 +34,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0ev-BG-DzI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5ic-XD-441"/>
+                            <constraint firstItem="0ev-BG-DzI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vCk-oo-npS"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

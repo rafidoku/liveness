@@ -41,6 +41,14 @@
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bw-kE-ZrM">
+                                <rect key="frame" x="72.5" y="260" width="269" height="269"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="269" id="9cJ-wx-MOI"/>
+                                    <constraint firstAttribute="width" constant="269" id="yme-eH-pG9"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -49,9 +57,14 @@
                             <constraint firstItem="08z-TL-jX5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="BWc-8U-Awg"/>
                             <constraint firstItem="fiM-cN-4Zo" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="WNh-Kd-Nft"/>
                             <constraint firstItem="08z-TL-jX5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="hBX-8K-7wj"/>
+                            <constraint firstItem="9bw-kE-ZrM" firstAttribute="top" secondItem="08z-TL-jX5" secondAttribute="bottom" constant="80" id="jcT-vg-IOX"/>
                             <constraint firstItem="08z-TL-jX5" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="m2K-JH-Ram"/>
+                            <constraint firstItem="9bw-kE-ZrM" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="xGf-wm-c61"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraView" destination="9bw-kE-ZrM" id="VcF-ww-sQO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
