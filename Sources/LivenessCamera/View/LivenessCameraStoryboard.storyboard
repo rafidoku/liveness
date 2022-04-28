@@ -35,11 +35,19 @@
                                     <constraint firstItem="Zun-Ik-oAe" firstAttribute="leading" secondItem="08z-TL-jX5" secondAttribute="leading" constant="16" id="j1O-kU-w3t"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Powered by DOKU" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fiM-cN-4Zo">
+                                <rect key="frame" x="161" y="816" width="92" height="14"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="12"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="fiM-cN-4Zo" secondAttribute="bottom" constant="32" id="5Rd-4t-Itw"/>
                             <constraint firstItem="08z-TL-jX5" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="BWc-8U-Awg"/>
+                            <constraint firstItem="fiM-cN-4Zo" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="WNh-Kd-Nft"/>
                             <constraint firstItem="08z-TL-jX5" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="hBX-8K-7wj"/>
                             <constraint firstItem="08z-TL-jX5" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="m2K-JH-Ram"/>
                         </constraints>

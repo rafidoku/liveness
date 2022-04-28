@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		46979DD5281A472C004B95CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46979DD3281A472C004B95CB /* Main.storyboard */; };
 		46979DD7281A472D004B95CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46979DD6281A472D004B95CB /* Assets.xcassets */; };
 		46979DDA281A472D004B95CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46979DD8281A472D004B95CB /* LaunchScreen.storyboard */; };
+		46979DE3281A4770004B95CB /* LivenessCamera in Frameworks */ = {isa = PBXBuildFile; productRef = 46979DE2281A4770004B95CB /* LivenessCamera */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46979DE3281A4770004B95CB /* LivenessCamera in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = LivenessExample;
+			packageProductDependencies = (
+				46979DE2281A4770004B95CB /* LivenessCamera */,
+			);
 			productName = LivenessExample;
 			productReference = 46979DCA281A472C004B95CB /* LivenessExample.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +115,9 @@
 				Base,
 			);
 			mainGroup = 46979DC1281A472C004B95CB;
+			packageReferences = (
+				46979DE1281A4770004B95CB /* XCRemoteSwiftPackageReference "liveness" */,
+			);
 			productRefGroup = 46979DCB281A472C004B95CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -341,6 +349,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		46979DE1281A4770004B95CB /* XCRemoteSwiftPackageReference "liveness" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rafidoku/liveness";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		46979DE2281A4770004B95CB /* LivenessCamera */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46979DE1281A4770004B95CB /* XCRemoteSwiftPackageReference "liveness" */;
+			productName = LivenessCamera;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 46979DC2281A472C004B95CB /* Project object */;
 }
