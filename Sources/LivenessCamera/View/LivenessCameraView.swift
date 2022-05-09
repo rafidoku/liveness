@@ -8,7 +8,7 @@ public class LivenessCameraViewController: UIViewController {
     var sessionOutput = AVCaptureStillImageOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     private lazy var shapeLayer: ProgressShapeLayer = {
-        return ProgressShapeLayer(strokeColor: .green, lineWidth: 2.0)
+        return ProgressShapeLayer(strokeColor: .green, lineWidth: 5.0)
     }()
     
     public override func viewWillAppear(_ animated: Bool) {
