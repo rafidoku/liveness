@@ -31,7 +31,7 @@ public class LivenessCameraViewController: UIViewController {
         
         let strokeAnimationGroup = CAAnimationGroup()
         strokeAnimationGroup.duration = 3
-        strokeAnimationGroup.repeatDuration = .zero
+        strokeAnimationGroup.repeatDuration = .infinity
         strokeAnimationGroup.animations = [startAnimation, endAnimation]
         
         shapeLayer.add(strokeAnimationGroup, forKey: nil)
