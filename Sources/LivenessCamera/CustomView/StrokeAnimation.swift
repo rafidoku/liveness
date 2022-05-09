@@ -25,7 +25,7 @@ class StrokeAnimation: CABasicAnimation {
         self.fromValue = fromValue
         self.toValue = toValue
         self.duration = duration
-        self.timingFunction == .init(name: .easeIn)
+        self.timingFunction == .init(name: .easeOut)
     }
     
     required init?(coder: NSCoder) {
