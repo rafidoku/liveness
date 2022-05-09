@@ -10,32 +10,18 @@ public class LivenessCameraViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        let devices = AVCaptureDevice.devices(for: .video)
-//        for device in devices {
-//            if device.position == AVCaptureDevice.Position.front {
-//                do {
-//                    let input = try AVCaptureDeviceInput(device: device as! AVCaptureDevice)
-//                    if captureSession.canAddInput(input) {
-//                        captureSession.addInput(input)
-//                        sessionOutput.outputSettings = [AVVideoCodecKey : AVVideoCodecJPEG]
-//
-//                        if captureSession.canAddOutput(sessionOutput) {
-//                            captureSession.addOutput(sessionOutput)
-//                            captureSession.startRunning()
-//                            previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-//                            previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-//                            previewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
-//                            cameraView.layer.addSublayer(previewLayer)
-//                            previewLayer.position = CGPoint(x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
-//                            previewLayer.bounds = cameraView.frame
-//                        }
-//                    }
-//                } catch let error {
-//                    print("error device ", error.localizedDescription)
-//                }
-//            }
-//        }
         self.setupCamera()
+    }
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        cameraView.layer.masksToBounds = true
+        cameraView.layer.cornerRadius = cameraView.frame.width / 2
+        let border = CALayer()
+        border.frame = CGRect(x: 0, y: self.cameraView.frame.height - 2, width: self.cameraView.frame.width, height: 2)
+        border.backgroundColor = UIColor.green.cgColor
+
+        self.cameraView.layer.addSublayer(border)
     }
     
     private func setupCamera() {
@@ -70,12 +56,6 @@ public class LivenessCameraViewController: UIViewController {
                 self.previewLayer.frame = self.cameraView.bounds
             }
         }
-    }
-    
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        cameraView.layer.masksToBounds = true
-        cameraView.layer.cornerRadius = cameraView.frame.width / 2
     }
 }
 
