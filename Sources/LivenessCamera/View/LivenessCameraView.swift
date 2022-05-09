@@ -8,7 +8,7 @@ public class LivenessCameraViewController: UIViewController {
     var sessionOutput = AVCaptureStillImageOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     private lazy var shapeLayer: ProgressShapeLayer = {
-        return ProgressShapeLayer(strokeColor: .green, lineWidth: 5.0)
+        return ProgressShapeLayer(strokeColor: .green, lineWidth: 8.0)
     }()
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -30,8 +30,8 @@ public class LivenessCameraViewController: UIViewController {
         let endAnimation = StrokeAnimation(type: .end, fromValue: 0.0, toValue: 1.0, duration: 0.75)
         
         let strokeAnimationGroup = CAAnimationGroup()
-        strokeAnimationGroup.duration = 1
-        strokeAnimationGroup.repeatDuration = .infinity
+        strokeAnimationGroup.duration = 0.8
+        strokeAnimationGroup.repeatDuration = .zero
         strokeAnimationGroup.animations = [startAnimation, endAnimation]
         
         shapeLayer.add(strokeAnimationGroup, forKey: nil)
