@@ -7,21 +7,34 @@ public class LivenessCameraViewController: UIViewController {
     var captureSession = AVCaptureSession()
     var sessionOutput = AVCaptureStillImageOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
+    private lazy var shapeLayer: ProgressShapeLayer = {
+        return ProgressShapeLayer(strokeColor: .green, lineWidth: 2.0)
+    }()
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupCamera()
+        self.animateStroke()
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         cameraView.layer.masksToBounds = true
         cameraView.layer.cornerRadius = cameraView.frame.width / 2
-        let border = CALayer()
-        border.frame = CGRect(x: 0, y: self.cameraView.frame.height - 2, width: self.cameraView.frame.width, height: 2)
-        border.backgroundColor = UIColor.green.cgColor
-
-        self.cameraView.layer.addSublayer(border)
+        let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: self.cameraView.bounds.width, height: self.cameraView.bounds.height))
+    }
+    
+    func animateStroke() {
+        let startAnimation = StrokeAnimation(type: .start, beginTime: 0.25, fromValue: 0.0, toValue: 1.0, duration: 0.75)
+        let endAnimation = StrokeAnimation(type: .end, fromValue: 0.0, toValue: 1.0, duration: 0.75)
+        
+        let strokeAnimationGroup = CAAnimationGroup()
+        strokeAnimationGroup.duration = 1
+        strokeAnimationGroup.repeatDuration = .zero
+        strokeAnimationGroup.animations = [startAnimation, endAnimation]
+        
+        shapeLayer.add(strokeAnimationGroup, forKey: nil)
+        self.cameraView.layer.addSublayer(shapeLayer)
     }
     
     private func setupCamera() {
