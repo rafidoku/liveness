@@ -26,7 +26,7 @@ public class LivenessCameraViewController: UIViewController {
     }
     
     func animateStroke() {
-        let startAnimation = StrokeAnimation(type: .start, beginTime: 0.0, fromValue: 0.0, toValue: 1.0, duration:0.75)
+        let startAnimation = StrokeAnimation(type: .start, beginTime: 0.1, fromValue: 0.0, toValue: 1.0, duration:0.75)
         let endAnimation = StrokeAnimation(type: .end, fromValue: 0.0, toValue: 1.0, duration: 0.75)
         
         let strokeAnimationGroup = CAAnimationGroup()
