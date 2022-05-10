@@ -8,7 +8,7 @@ public class LivenessCameraViewController: UIViewController {
     var sessionOutput = AVCaptureStillImageOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     private lazy var shapeLayer: ProgressShapeLayer = {
-        return ProgressShapeLayer(strokeColor: .green, lineWidth: 20.0)
+        return ProgressShapeLayer(strokeColor: .green, lineWidth: 8.0)
     }()
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -21,22 +21,28 @@ public class LivenessCameraViewController: UIViewController {
         super.viewDidLoad()
         cameraView.layer.masksToBounds = true
         cameraView.layer.cornerRadius = cameraView.frame.width / 2
-        let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: self.cameraView.bounds.width, height: self.cameraView.bounds.height))
+//        let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: self.cameraView.bounds.width, height: self.cameraView.bounds.height))
+//        shapeLayer.path = path.cgPath
+        let path = UIBezierPath(arcCenter: CGPoint(x: self.cameraView.frame.origin.x, y: self.cameraView.frame.origin.y),
+                                radius: self.cameraView.frame.size.height/2,
+                                startAngle: CGFloat(270.0).toRadians(),
+                                endAngle: CGFloat(90.0).toRadians(),
+                                clockwise: false)
         shapeLayer.path = path.cgPath
         self.cameraView.layer.addSublayer(shapeLayer)
     }
     
-    func animateStroke() {
-        let startAnimation = StrokeAnimation(type: .start, beginTime: 0.1, fromValue: 0.0, toValue: 1.0, duration:0.9)
-        let endAnimation = StrokeAnimation(type: .end, fromValue: 0.0, toValue: 1.0, duration: 0.9)
-        
-        let strokeAnimationGroup = CAAnimationGroup()
-        strokeAnimationGroup.duration = 1
-        strokeAnimationGroup.repeatDuration = .infinity
-        strokeAnimationGroup.animations = [startAnimation, endAnimation]
-        
-        shapeLayer.add(strokeAnimationGroup, forKey: nil)
-    }
+//    func animateStroke() {
+//        let startAnimation = StrokeAnimation(type: .start, beginTime: 0.1, fromValue: 0.0, toValue: 1.0, duration:0.9)
+//        let endAnimation = StrokeAnimation(type: .end, fromValue: 0.0, toValue: 1.0, duration: 0.9)
+//
+//        let strokeAnimationGroup = CAAnimationGroup()
+//        strokeAnimationGroup.duration = 1
+//        strokeAnimationGroup.repeatDuration = .infinity
+//        strokeAnimationGroup.animations = [startAnimation, endAnimation]
+//
+//        shapeLayer.add(strokeAnimationGroup, forKey: nil)
+//    }
     
     private func setupCamera() {
         captureSession.sessionPreset = .high
@@ -85,5 +91,11 @@ public class LivenessCameraView {
             viewStoryboard.modalPresentationStyle = .fullScreen
             self.rootViewController?.present(viewStoryboard, animated: true, completion: nil)
         }
+    }
+}
+
+extension CGFloat {
+    func toRadians() -> CGFloat {
+        return self * CGFloat(M_PI) / 180.0
     }
 }
