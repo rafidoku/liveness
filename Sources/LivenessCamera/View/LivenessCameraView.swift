@@ -4,48 +4,28 @@ import AVFoundation
 public class LivenessCameraViewController: UIViewController {
     
     @IBOutlet var cameraView: UIView!
+    @IBOutlet var borderView: UIView!
     var captureSession = AVCaptureSession()
     var sessionOutput = AVCaptureStillImageOutput()
-    var previewLayer = AVCaptureVideoPreviewLayer()
-    private lazy var shapeLayer: ProgressShapeLayer = {
-        return ProgressShapeLayer(strokeColor: .green, lineWidth: 8.0)
-    }()
-    
+    var previewLayer = AVCaptureVideoPreviewLayer()    
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupCamera()
-//        self.animateStroke()
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         cameraView.layer.masksToBounds = true
         cameraView.layer.cornerRadius = cameraView.frame.width / 2
-//        let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: self.cameraView.bounds.width, height: self.cameraView.bounds.height))
-//        shapeLayer.path = path.cgPath
-        let path = UIBezierPath(arcCenter: CGPoint(x: self.cameraView.frame.size.width/2, y: self.cameraView.frame.size.height/2),
-                                radius: self.cameraView.frame.size.height/2,
+        let path = UIBezierPath(arcCenter: CGPoint(x: self.borderView.frame.size.width/2, y: self.borderView.frame.size.height/2),
+                                radius: self.borderView.frame.size.height/2,
                                 startAngle: CGFloat(270.0).toRadians(),
                                 endAngle: CGFloat(90.0).toRadians(),
                                 clockwise: true)
         let shape = CAShapeLayer()
         shape.path = path.cgPath
-        shape.lineWidth = 20.0
-        shape.strokeColor = UIColor.green.cgColor
-        self.view.layer.addSublayer(shape)
+        self.borderView.layer.addSublayer(shape)
     }
-    
-//    func animateStroke() {
-//        let startAnimation = StrokeAnimation(type: .start, beginTime: 0.1, fromValue: 0.0, toValue: 1.0, duration:0.9)
-//        let endAnimation = StrokeAnimation(type: .end, fromValue: 0.0, toValue: 1.0, duration: 0.9)
-//
-//        let strokeAnimationGroup = CAAnimationGroup()
-//        strokeAnimationGroup.duration = 1
-//        strokeAnimationGroup.repeatDuration = .infinity
-//        strokeAnimationGroup.animations = [startAnimation, endAnimation]
-//
-//        shapeLayer.add(strokeAnimationGroup, forKey: nil)
-//    }
     
     private func setupCamera() {
         captureSession.sessionPreset = .high
