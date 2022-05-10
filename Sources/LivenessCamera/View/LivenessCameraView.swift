@@ -26,7 +26,7 @@ public class LivenessCameraViewController: UIViewController {
                                 clockwise: true)
         let shape = CAShapeLayer()
         shape.path = path.cgPath
-        shape.fillColor = #colorLiteral(red: 0, green: 0.631372549, blue: 0.6078431373, alpha: 1)
+        shape.fillColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         shape.lineWidth = 10
         shape.strokeColor = #colorLiteral(red: 0, green: 0.631372549, blue: 0.6078431373, alpha: 1)
         self.borderView.layer.addSublayer(shape)
