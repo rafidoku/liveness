@@ -23,6 +23,7 @@ public class LivenessCameraViewController: UIViewController {
         cameraView.layer.cornerRadius = cameraView.frame.width / 2
         let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: self.cameraView.bounds.width, height: self.cameraView.bounds.height))
         shapeLayer.path = path.cgPath
+        self.cameraView.layer.addSublayer(shapeLayer)
     }
     
     func animateStroke() {
@@ -35,7 +36,6 @@ public class LivenessCameraViewController: UIViewController {
         strokeAnimationGroup.animations = [startAnimation, endAnimation]
         
         shapeLayer.add(strokeAnimationGroup, forKey: nil)
-        self.cameraView.layer.addSublayer(shapeLayer)
     }
     
     private func setupCamera() {
