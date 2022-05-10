@@ -29,7 +29,8 @@ public class LivenessCameraViewController: UIViewController {
                                 endAngle: CGFloat(90.0).toRadians(),
                                 clockwise: false)
         shapeLayer.path = path.cgPath
-        self.cameraView.layer.addSublayer(shapeLayer)
+        cameraView.isHidden = true
+        self.view.layer.addSublayer(shapeLayer)
     }
     
 //    func animateStroke() {
