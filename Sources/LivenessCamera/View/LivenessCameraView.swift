@@ -32,7 +32,7 @@ public class LivenessCameraViewController: UIViewController {
         shape.path = path.cgPath
         shape.lineWidth = 20.0
         shape.strokeColor = UIColor.green.cgColor
-        self.cameraView.layer.addSublayer(shape)
+        self.view.layer.addSublayer(shape)
     }
     
 //    func animateStroke() {
