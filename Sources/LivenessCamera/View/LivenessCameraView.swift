@@ -30,7 +30,6 @@ public class LivenessCameraViewController: UIViewController {
                                 clockwise: false)
         let shape = CAShapeLayer()
         shape.path = path.cgPath
-        cameraView.isHidden = true
         self.view.layer.addSublayer(shape)
     }
     
