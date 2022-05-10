@@ -14,7 +14,7 @@ public class LivenessCameraViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupCamera()
-        self.animateStroke()
+//        self.animateStroke()
     }
     
     public override func viewDidLoad() {
