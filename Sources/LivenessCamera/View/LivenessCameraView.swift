@@ -13,7 +13,7 @@ public class LivenessCameraViewController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        self.setupCamera()
+        self.setupCamera()
 //        self.animateStroke()
     }
     
@@ -30,6 +30,8 @@ public class LivenessCameraViewController: UIViewController {
                                 clockwise: true)
         let shape = CAShapeLayer()
         shape.path = path.cgPath
+        shape.lineWidth = 20.0
+        shape.strokeColor = UIColor.green.cgColor
         self.cameraView.layer.addSublayer(shape)
     }
     
