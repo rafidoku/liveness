@@ -30,6 +30,8 @@ public class LivenessCameraViewController: UIViewController {
                                 clockwise: false)
         let shape = CAShapeLayer()
         shape.path = path.cgPath
+        shape.lineWidth = 20.0
+        shape.strokeColor = UIColor.green.cgColor
         self.cameraView.layer.addSublayer(shape)
     }
     
