@@ -27,7 +27,7 @@ public class LivenessCameraViewController: UIViewController {
                                 radius: self.cameraView.frame.size.height/2,
                                 startAngle: CGFloat(270.0).toRadians(),
                                 endAngle: CGFloat(90.0).toRadians(),
-                                clockwise: false)
+                                clockwise: true)
         let shape = CAShapeLayer()
         shape.path = path.cgPath
         self.cameraView.layer.addSublayer(shape)
