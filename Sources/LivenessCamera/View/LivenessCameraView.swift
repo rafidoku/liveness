@@ -43,6 +43,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     
     @objc func captureLiveness() {
         if imageTaken.count == 15 {
+            print(imageTaken[0].size)
             cameraTimer.invalidate()
         } else {
             if #available(iOS 10.0, *) {
@@ -50,7 +51,6 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
                 if let photoPreviewType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
                     photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: photoPreviewType]
                     sessionOutput.capturePhoto(with: photoSettings, delegate: self)
-                    print("Picture Captured \(imageTaken.count)")
                 }
             }
         }
@@ -60,6 +60,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         guard let imageData = photo.fileDataRepresentation() else { return }
         let previewImage = UIImage(data: imageData)!
         imageTaken.append(previewImage)
+        print("Picture Captured \(imageTaken.count)")
     }
     
     private func setupCamera() {
