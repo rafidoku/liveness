@@ -6,6 +6,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     
     @IBOutlet var cameraView: UIView!
     @IBOutlet var borderView: UIView!
+    @IBOutlet var poweredLabel: UILabel!
     var captureSession = AVCaptureSession()
     var sessionOutput = AVCapturePhotoOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
@@ -60,6 +61,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         guard let imageData = photo.fileDataRepresentation() else { return }
         let previewImage = UIImage(data: imageData)!
         imageTaken.append(previewImage)
+        poweredLabel.text = "\(imageTaken.count)"
         print("Picture Captured \(imageTaken.count)")
     }
     
