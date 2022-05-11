@@ -1,15 +1,16 @@
 import UIKit
 import AVFoundation
 
-public class LivenessCameraViewController: UIViewController {
+@available(iOS 11.0, *)
+public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     @IBOutlet var cameraView: UIView!
     @IBOutlet var borderView: UIView!
     var captureSession = AVCaptureSession()
-    var sessionOutput = AVCaptureStillImageOutput()
+    var sessionOutput = AVCapturePhotoOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     var cameraTimer: Timer = Timer()
-    var pictureCounter: Int = 0
+    var imageTaken: [UIImage] = []
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,16 +38,28 @@ public class LivenessCameraViewController: UIViewController {
     }
     
     private func setTimer() {
-        cameraTimer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(captureLiveness), userInfo: nil, repeats: true)
+        cameraTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(captureLiveness), userInfo: nil, repeats: true)
     }
     
     @objc func captureLiveness() {
-        if pictureCounter == 15 {
+        if imageTaken.count == 15 {
             cameraTimer.invalidate()
         } else {
-            pictureCounter += 1
-            print("Picture Captured \(pictureCounter)")
+            if #available(iOS 10.0, *) {
+                let photoSettings = AVCapturePhotoSettings()
+                if let photoPreviewType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
+                    photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: photoPreviewType]
+                    sessionOutput.capturePhoto(with: photoSettings, delegate: self)
+                    print("Picture Captured \(imageTaken.count)")
+                }
+            }
         }
+    }
+    
+    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        guard let imageData = photo.fileDataRepresentation() else { return }
+        let previewImage = UIImage(data: imageData)!
+        imageTaken.append(previewImage)
     }
     
     private func setupCamera() {
@@ -58,7 +71,7 @@ public class LivenessCameraViewController: UIViewController {
             }
             do {
                 let input = try AVCaptureDeviceInput(device: frontCamera)
-                sessionOutput.isHighResolutionStillImageOutputEnabled = true
+//                sessionOutput.isHighResolutionStillImageOutputEnabled = true
                 if captureSession.canAddInput(input) && captureSession.canAddOutput(sessionOutput) {
                     captureSession.addInput(input)
                     captureSession.addOutput(sessionOutput)
@@ -84,6 +97,7 @@ public class LivenessCameraViewController: UIViewController {
     }
 }
 
+@available(iOS 11.0, *)
 public class LivenessCameraView {
     var rootViewController: UIViewController?
     
