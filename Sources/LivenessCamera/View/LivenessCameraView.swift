@@ -12,6 +12,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     var previewLayer = AVCaptureVideoPreviewLayer()
     var cameraTimer: Timer = Timer()
     var imageTaken: [UIImage] = []
+    var allImageSize: CGFloat = 0
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,7 +45,11 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     
     @objc func captureLiveness() {
         if imageTaken.count == 15 {
-            print(imageTaken[0].size)
+            for image in imageTaken {
+                let imgData: NSData = image.jpegData(compressionQuality: 1.0) as! NSData;
+                allImageSize += CGFloat(imgData.length)
+                poweredLabel.text = "Total all taken picture : \(allImageSize)"
+            }
             cameraTimer.invalidate()
         } else {
             if #available(iOS 10.0, *) {
@@ -61,7 +66,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         guard let imageData = photo.fileDataRepresentation() else { return }
         let previewImage = UIImage(data: imageData)!
         imageTaken.append(previewImage)
-        poweredLabel.text = "\(imageTaken.count)"
+        poweredLabel.text = "Picture Captured \(imageTaken.count)"
         print("Picture Captured \(imageTaken.count)")
     }
     
@@ -74,7 +79,6 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
             }
             do {
                 let input = try AVCaptureDeviceInput(device: frontCamera)
-//                sessionOutput.isHighResolutionStillImageOutputEnabled = true
                 if captureSession.canAddInput(input) && captureSession.canAddOutput(sessionOutput) {
                     captureSession.addInput(input)
                     captureSession.addOutput(sessionOutput)
