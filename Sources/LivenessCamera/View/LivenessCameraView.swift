@@ -9,6 +9,7 @@ public class LivenessCameraViewController: UIViewController {
     var sessionOutput = AVCaptureStillImageOutput()
     var previewLayer = AVCaptureVideoPreviewLayer()
     var cameraTimer: Timer = Timer()
+    var pictureCounter: Int = 0
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,11 +37,16 @@ public class LivenessCameraViewController: UIViewController {
     }
     
     private func setTimer() {
-        cameraTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(captureLiveness), userInfo: nil, repeats: true)
+        cameraTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(captureLiveness), userInfo: nil, repeats: true)
     }
     
     @objc func captureLiveness() {
-        print("Capture")
+        if pictureCounter == 15 {
+            cameraTimer.invalidate()
+        } else {
+            pictureCounter += 1
+        }
+        print("Picture Captured \(pictureCounter)")
     }
     
     private func setupCamera() {
