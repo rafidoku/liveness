@@ -32,7 +32,7 @@ public class LivenessCameraViewController: UIViewController {
         shape.lineWidth = 10
         shape.strokeColor = #colorLiteral(red: 0, green: 0.631372549, blue: 0.6078431373, alpha: 1)
         self.borderView.layer.addSublayer(shape)
-        self.captureLiveness()
+        self.setTimer()
     }
     
     private func setTimer() {
