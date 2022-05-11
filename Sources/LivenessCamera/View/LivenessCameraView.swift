@@ -7,14 +7,16 @@ public class LivenessCameraViewController: UIViewController {
     @IBOutlet var borderView: UIView!
     var captureSession = AVCaptureSession()
     var sessionOutput = AVCaptureStillImageOutput()
-    var previewLayer = AVCaptureVideoPreviewLayer()    
+    var previewLayer = AVCaptureVideoPreviewLayer()
+    var cameraTimer: Timer = Timer()
+    
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.setupCamera()
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupCamera()
         cameraView.layer.masksToBounds = true
         cameraView.layer.cornerRadius = cameraView.frame.width / 2
         borderView.layer.masksToBounds = true
@@ -30,6 +32,15 @@ public class LivenessCameraViewController: UIViewController {
         shape.lineWidth = 10
         shape.strokeColor = #colorLiteral(red: 0, green: 0.631372549, blue: 0.6078431373, alpha: 1)
         self.borderView.layer.addSublayer(shape)
+        self.captureLiveness()
+    }
+    
+    private func setTimer() {
+        cameraTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(captureLiveness), userInfo: nil, repeats: true)
+    }
+    
+    @objc func captureLiveness() {
+        print("Capture")
     }
     
     private func setupCamera() {
