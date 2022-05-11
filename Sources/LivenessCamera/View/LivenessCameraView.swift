@@ -37,7 +37,7 @@ public class LivenessCameraViewController: UIViewController {
     }
     
     private func setTimer() {
-        cameraTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(captureLiveness), userInfo: nil, repeats: true)
+        cameraTimer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(captureLiveness), userInfo: nil, repeats: true)
     }
     
     @objc func captureLiveness() {
@@ -45,8 +45,8 @@ public class LivenessCameraViewController: UIViewController {
             cameraTimer.invalidate()
         } else {
             pictureCounter += 1
+            print("Picture Captured \(pictureCounter)")
         }
-        print("Picture Captured \(pictureCounter)")
     }
     
     private func setupCamera() {
