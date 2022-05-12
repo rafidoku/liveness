@@ -1,16 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "LivenessCamera",
-        "repositoryURL": "https://github.com/rafidoku/liveness",
-        "state": {
-          "branch": "master",
-          "revision": "d5273cd7aca13a16fe591cb1f7e61f91895bc2cd",
-          "version": null
-        }
+  "pins" : [
+    {
+      "identity" : "liveness",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/rafidoku/liveness",
+      "state" : {
+        "branch" : "master",
+        "revision" : "9d50dc7e170c1bd3a5b95527b910c43024a6f216"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }
