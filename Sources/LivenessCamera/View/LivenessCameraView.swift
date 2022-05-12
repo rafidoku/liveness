@@ -76,7 +76,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     
     private func animateProgress(progress: Int) {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.toValue = progress / 15.0
+        basicAnimation.toValue = CGFloat(progress) / 15.0
         basicAnimation.duration = 2
         basicAnimation.fillMode = .forwards
         basicAnimation.isRemovedOnCompletion = false
