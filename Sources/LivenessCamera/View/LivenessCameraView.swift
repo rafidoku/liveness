@@ -76,7 +76,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     
     private func animateProgress(progress: Int) {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        progreeTaken += (CGFloat(progress) * 15.0 * 0.5)
+        progreeTaken += (CGFloat(progress) / 15.0 * 0.5)
         basicAnimation.toValue =  progreeTaken
         shape.strokeEnd = progreeTaken
         basicAnimation.duration = 2
