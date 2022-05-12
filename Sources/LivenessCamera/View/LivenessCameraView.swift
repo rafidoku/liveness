@@ -29,7 +29,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         borderView.layer.cornerRadius = borderView.frame.width / 2
         let path = UIBezierPath(arcCenter: CGPoint(x: self.borderView.frame.size.width/2, y: self.borderView.frame.size.height/2),
                                 radius: self.borderView.frame.size.height/2,
-                                startAngle: -(CGFloat.pi * 2),
+                                startAngle: -(CGFloat.pi / 2),
                                 endAngle: 2 * CGFloat.pi,
                                 clockwise: true)
         shape.path = path.cgPath
