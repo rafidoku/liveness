@@ -70,9 +70,8 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         let previewImage = UIImage(data: imageData)!
         imageTaken.append(previewImage)
         testImage.image = previewImage
-        poweredLabel.text = "Picture Captured \(imageTaken.count)"
         animateProgress(progress: imageTaken.count)
-        print("Picture Captured \(imageTaken.count)")
+        poweredLabel.text = "Picture Captured \(imageTaken.count)"
     }
     
     private func animateProgress(progress: Int) {
