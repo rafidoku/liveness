@@ -14,6 +14,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     var cameraTimer: Timer = Timer()
     var imageTaken: [UIImage] = []
     var allImageSize: CGFloat = 0
+    let shape = CAShapeLayer()
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,13 +30,13 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         let path = UIBezierPath(arcCenter: CGPoint(x: self.borderView.frame.size.width/2, y: self.borderView.frame.size.height/2),
                                 radius: self.borderView.frame.size.height/2,
                                 startAngle: -(CGFloat.pi * 2),
-                                endAngle: 15.0,
+                                endAngle: 2 * CGFloat.pi,
                                 clockwise: true)
-        let shape = CAShapeLayer()
         shape.path = path.cgPath
         shape.fillColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         shape.lineWidth = 10
         shape.strokeColor = #colorLiteral(red: 0, green: 0.631372549, blue: 0.6078431373, alpha: 1)
+        shape.strokeEnd = 0
         self.borderView.layer.addSublayer(shape)
         self.setTimer()
     }
@@ -69,7 +70,17 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         imageTaken.append(previewImage)
         testImage.image = previewImage
         poweredLabel.text = "Picture Captured \(imageTaken.count)"
+        animateProgress(progress: 1.0)
         print("Picture Captured \(imageTaken.count)")
+    }
+    
+    private func animateProgress(progress: CGFloat) {
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.toValue = 0.5
+        basicAnimation.duration = 2
+        basicAnimation.fillMode = .forwards
+        basicAnimation.isRemovedOnCompletion = false
+        shape.add(basicAnimation, forKey: "basicAnimation")
     }
     
     private func setupCamera() {
