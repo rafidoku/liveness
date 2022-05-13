@@ -16,6 +16,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     var allImageSize: CGFloat = 0
     let shape = CAShapeLayer()
     var progreeTaken: CGFloat = 0.0
+    var counter: Int = 0
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -68,17 +69,18 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
         let previewImage = UIImage(data: imageData)!
+        counter += 1
         imageTaken.append(previewImage)
         testImage.image = previewImage
-        animateProgress(progress: imageTaken.count)
+        animateProgress(progress: counter)
         poweredLabel.text = "Picture Captured \(imageTaken.count)"
     }
     
     private func animateProgress(progress: Int) {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         print("PROGRESS TAKEN \(progreeTaken)")
-        progreeTaken += 0.057
-        basicAnimation.toValue =  progreeTaken
+        progreeTaken += counter / 15.0
+//        basicAnimation.toValue =  progreeTaken
         shape.strokeEnd = progreeTaken
         basicAnimation.duration = 2
         basicAnimation.fillMode = .forwards
