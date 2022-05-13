@@ -74,6 +74,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         testImage.image = previewImage
         animateProgress(progress: counter)
         poweredLabel.text = "Picture Captured \(imageTaken.count)"
+        shape.strokeEnd = progreeTaken
     }
     
     private func animateProgress(progress: Int) {
@@ -81,7 +82,6 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         print("PROGRESS TAKEN \(progreeTaken)")
         progreeTaken = CGFloat(counter) / 15.0
         basicAnimation.toValue =  progreeTaken
-        shape.strokeEnd = progreeTaken
         basicAnimation.duration = 2
         basicAnimation.fillMode = .forwards
         basicAnimation.isRemovedOnCompletion = false
