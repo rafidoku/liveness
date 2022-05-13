@@ -70,13 +70,13 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         guard let imageData = photo.fileDataRepresentation() else { return }
         let previewImage = UIImage(data: imageData)!
         counter += 1
-        animateProgress(progress: counter)
+        animateProgress()
         imageTaken.append(previewImage)
         testImage.image = previewImage
         poweredLabel.text = "Picture Captured \(imageTaken.count)"
     }
     
-    private func animateProgress(progress: Int) {
+    private func animateProgress() {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         progreeTaken += 0.055
         basicAnimation.toValue =  progreeTaken
