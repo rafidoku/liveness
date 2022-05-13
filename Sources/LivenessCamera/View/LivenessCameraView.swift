@@ -16,7 +16,7 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     var allImageSize: CGFloat = 0
     let shape = CAShapeLayer()
     var progreeTaken: CGFloat = 0.0
-    var counter: Int = 0
+    var counter: CGFloat = 0
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -41,6 +41,8 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
         shape.strokeEnd = 0
         self.borderView.layer.addSublayer(shape)
         self.setTimer()
+        print("RADIUS PER 15 \((self.borderView.frame.size.height/2) / 15)")
+        counter = (self.borderView.frame.size.height/2) / 15
     }
     
     private func setTimer() {
@@ -69,19 +71,17 @@ public class LivenessCameraViewController: UIViewController, AVCapturePhotoCaptu
     public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
         let previewImage = UIImage(data: imageData)!
-        counter += 1
         imageTaken.append(previewImage)
         testImage.image = previewImage
-//        animateProgress(progress: counter)
+        animateProgress(progress: 0)
         poweredLabel.text = "Picture Captured \(imageTaken.count)"
-        shape.strokeEnd = CGFloat(counter) / 15.0
     }
     
     private func animateProgress(progress: Int) {
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        print("PROGRESS TAKEN \(progreeTaken)")
-        progreeTaken = CGFloat(counter) / 15.0
+        progreeTaken = counter
         basicAnimation.toValue =  progreeTaken
+        shape.strokeEnd = progreeTaken
         basicAnimation.duration = 2
         basicAnimation.fillMode = .forwards
         basicAnimation.isRemovedOnCompletion = false
